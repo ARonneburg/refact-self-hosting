@@ -68,7 +68,33 @@ models_mini_db = {
     "T": 2048,
     "filter_caps": ["starcoder"],
 },
-"falcon7b": {
+"falcon7b-a": {
+    "model_path_type": "huggingface",
+    "model_path": "tiiuae/falcon-7b",
+    "diff_scratchpad_class": ScratchpadBigCode,
+    "chat_scratchpad_class": ScratchpadBigChat,
+    "model_class": CodifyModel,
+    "model_class_kwargs": { 
+        "bits": 8,
+        "temperature": 0.5
+    },
+    "T": 2048, 
+    "filter_caps": ["falcon"],
+},
+"falcon7b-b": {
+    "model_path_type": "huggingface",
+    "model_path": "tiiuae/falcon-7b",
+    "diff_scratchpad_class": ScratchpadBigCode,
+    "chat_scratchpad_class": ScratchpadBigChat,
+    "model_class": HFModel,
+    "model_class_kwargs": { 
+        "bits": 8,
+        "temperature": 0.5
+    },
+    "T": 2048, 
+    "filter_caps": ["falcon"],
+},
+"falcon7b-c": {
     "model_path_type": "huggingface",
     "model_path": "tiiuae/falcon-7b",
     "diff_scratchpad_class": ScratchpadBigCode,
