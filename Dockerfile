@@ -29,15 +29,15 @@ ENV TORCH_CUDA_ARCH_LIST="6.1;7.0;7.5;8.0;8.6+PTX"
 RUN if [ "$TARGETARCH" = "amd64" ]; then \
       BUILD_QUANT_CUDA=1 pip install --no-cache-dir git+https://github.com/ARonneburg/code-contrast.git; \
     elif [ "$TARGETARCH" = "arm64" ]; then \
-      pip install --no-cache-dir git+https://github.com/ARonneburg/code-contrast.git; \
+      pip install --no-cache-dir git+https://github.com/ARonneburg/code-smallcloudai.git; \
     else \
       exit 1; \
     fi
 
 RUN pip install --no-cache-dir git+https://github.com/ARonneburg/refact-self-hosting.git
-
+RUN pip install pydantic==1.10
 ENV SERVER_WORKDIR=/workdir
 ENV SERVER_PORT=8008
 EXPOSE $SERVER_PORT
 
-CMD ["python", "-m", "refact_self_hosting.watchdog", "--workdir", "/workdir"]
+ENTRYPOINT ["python", "-m", "refact_self_hosting.watchdog", "--workdir", "/workdir"]
