@@ -56,6 +56,30 @@ models_mini_db = {
     "T": 2048,
     "filter_caps": ["starcoder"],
 },
+"starcoder/15b/base4bit/XL": {
+    "model_path_type": "huggingface",
+    "model_path": "smallcloudai/starcoder_15b_4bit",
+    "diff_scratchpad_class": ScratchpadBigCode,
+    "chat_scratchpad_class": ScratchpadBigChat,
+    "model_class": GPTQBigCodeModel,
+    "model_class_kwargs": {
+        "bits": 4,
+    },
+    "T": 4096,
+    "filter_caps": ["starcoder"],
+},
+"starcoder/15b/base4bit/XXL": {
+    "model_path_type": "huggingface",
+    "model_path": "smallcloudai/starcoder_15b_4bit",
+    "diff_scratchpad_class": ScratchpadBigCode,
+    "chat_scratchpad_class": ScratchpadBigChat,
+    "model_class": GPTQBigCodeModel,
+    "model_class_kwargs": {
+        "bits": 4,
+    },
+    "T": 8192,
+    "filter_caps": ["starcoder"],
+},
 "starcoder/15b/base8bit": {
     "model_path_type": "huggingface",
     "model_path": "smallcloudai/starcoder_15b_8bit",
@@ -76,7 +100,6 @@ models_mini_db = {
     "model_class": CodifyModel,
     "model_class_kwargs": { 
         "bits": 8,
-        "temperature": 0.5
     },
     "T": 2048, 
     "filter_caps": ["falcon"],
@@ -89,7 +112,6 @@ models_mini_db = {
     "model_class": HFModel,
     "model_class_kwargs": { 
         "bits": 8,
-        "temperature": 0.5
     },
     "T": 2048, 
     "filter_caps": ["falcon"],
@@ -102,7 +124,6 @@ models_mini_db = {
     "model_class": GPTQBigCodeModel,
     "model_class_kwargs": { 
         "bits": 8,
-        "temperature": 0.5
     },
     "T": 2048, 
     "filter_caps": ["falcon"],

@@ -35,7 +35,7 @@ RUN if [ "$TARGETARCH" = "amd64" ]; then \
     fi
 
 RUN pip install --no-cache-dir git+https://github.com/ARonneburg/refact-self-hosting.git
-RUN pip install pydantic==1.10
+RUN pip install pydantic==1.10 && pip install einops
 ENV SERVER_WORKDIR=/workdir
 ENV SERVER_PORT=8008
 EXPOSE $SERVER_PORT
