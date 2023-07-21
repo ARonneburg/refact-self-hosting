@@ -27,14 +27,14 @@ RUN pip install --no-cache-dir cloudpickle dataclasses_json huggingface_hub blob
 
 ENV TORCH_CUDA_ARCH_LIST="6.1;7.0;7.5;8.0;8.6+PTX"
 RUN if [ "$TARGETARCH" = "amd64" ]; then \
-      BUILD_QUANT_CUDA=1 pip install --no-cache-dir git+https://github.com/ARonneburg/code-contrast.git; \
+      BUILD_QUANT_CUDA=1 pip install --no-cache-dir git+https://github.com/smallcloudai/code-contrast.git; \
     elif [ "$TARGETARCH" = "arm64" ]; then \
-      pip install --no-cache-dir git+https://github.com/ARonneburg/code-smallcloudai.git; \
+      pip install --no-cache-dir git+https://github.com/smallcloudai/code-smallcloudai.git; \
     else \
       exit 1; \
     fi
 
-RUN pip install --no-cache-dir git+https://github.com/ARonneburg/refact-self-hosting.git
+RUN pip install --no-cache-dir git+https://github.com/smallcloudai/refact-self-hosting.git
 RUN pip install pydantic==1.10 && pip install einops
 ENV SERVER_WORKDIR=/workdir
 ENV SERVER_PORT=8008

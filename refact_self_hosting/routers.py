@@ -38,6 +38,7 @@ async def inference_streamer(
             yield "data: [DONE]" + "\n\n"
         else:
             yield data_str
+            
     except asyncio.CancelledError:
         logging.info("inference streamer cancelled")
 
@@ -128,6 +129,7 @@ class CompletionRouter(APIRouter):
     async def _completion(self,
                           post: TextSamplingParams,
                           authorization: str = Header(None)):
+        logging.info("post:" + str(post))
         request = post.clamp()
         request.update({
             "id": str(uuid4()),
@@ -154,7 +156,11 @@ class CompletionRouter(APIRouter):
                 status_code=401,
                 detail="unknown model '%s'" % self._inference.model_name
             )
-        return StreamingResponse(inference_streamer(request, self._inference))
+        logging.info("post:" + str(post))
+        logging.info("request:" + str(request))
+        answer= StreamingResponse(inference_streamer(request, self._inference))
+        logging.info("answer:" + str(answer))
+        return answer
 
 
 class ContrastRouter(APIRouter):
@@ -216,7 +222,10 @@ class ContrastRouter(APIRouter):
                 status_code=401,
                 detail="unknown model '%s'" % self._inference.model_name
             )
-        return StreamingResponse(inference_streamer(request, self._inference))
+        answer = StreamingResponse(inference_streamer(request, self._inference))
+        logging.info("request:" + str(request))
+        logging.info("answer:" + str(answer))
+        return answer
 
 
 class ChatRouter(APIRouter):
